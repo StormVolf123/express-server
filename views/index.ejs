@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CBS ZOO Registry</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Velkommen til CBS ZOO regristrering!</h1>
+
+    <div class="actions">
+      <a href="/add-animal" class="add-button">Tilføj nyt dyr</a>
+
+      <form action="/" method="GET" class="search-form">
+        <input
+          type="text"
+          name="search"
+          placeholder="Søg ved navn"
+          value="<%= searchTerm %>"
+        >
+        <button type="submit">Søg</button>
+      </form>
+    </div>
+
+    <% if (animals.length === 0) { %>
+      <p>Ingen dyr fundet.</p>
+    <% } else { %>
+      <p>Viser <%= animals.length %> dyr.</p>
+
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Navn</th>
+          <th>Art</th>
+          <th>Dato tilføjet</th>
+          <th>Fødselsdag</th>
+          <th>Dødsdag</th>
+          <th>Alder</th>
+        </tr>
+
+        <% animals.forEach(animal => { %>
+          <tr>
+            <td><%= animal.id %></td>
+            <td><%= animal.name %></td>
+            <td><%= animal.species %></td>
+            <td><%= animal.dateAdded %></td>
+            <td><%= animal.birthDate %></td>
+            <td><%= animal.deathDate || 'Stadig i live' %></td>
+            <td><%= animal.age %> år</td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
